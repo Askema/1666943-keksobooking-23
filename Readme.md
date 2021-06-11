@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Дмитрий Александров](https://up.htmlacademy.ru/javascript/23/user/1666943).
-* Наставник: [Максим Деев](https://htmlacademy.ru/profile/id685777).
+* Наставник: [Анастасия Васинская](https://htmlacademy.ru/profile/vanastasiya).
 
 ---
 
