@@ -14,25 +14,25 @@ getRandomIntFromRange();
 
 const location1 = {};
 
-const avatars = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
+const AVATARS = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
 
-const types = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 
-const time = ['12:00', '13:00', '14:00'];
+const TIME = ['12:00', '13:00', '14:00'];
 
-const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
-const photos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
+const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 
 function getAvatar() {
-  const avatarIndex = getRandomIntFromRange(avatars[0], avatars.length - 1);
-  const avatar = `img/avatars/user${avatars[avatarIndex]}.png`;
+  const avatarIndex = getRandomIntFromRange(AVATARS[0], AVATARS.length - 1);
+  const avatar = `img/avatars/user${AVATARS[avatarIndex]}.png`;
   return avatar;
 }
 
 function getType() {
-  const typeIndex = getRandomIntFromRange(0, types.length - 1);
-  const type = types[typeIndex];
+  const typeIndex = getRandomIntFromRange(0, TYPES.length - 1);
+  const type = TYPES[typeIndex];
   return type;
 }
 
@@ -52,14 +52,14 @@ function getGuests() {
 }
 
 function getCheckin() {
-  const checkinIndex = getRandomIntFromRange(0, time.length - 1);
-  const checkin = time[checkinIndex];
+  const checkinIndex = getRandomIntFromRange(0, TIME.length - 1);
+  const checkin = TIME[checkinIndex];
   return checkin;
 }
 
 function getCheckout() {
-  const checkoutIndex = getRandomIntFromRange(0, time.length - 1);
-  const checkout = time[checkoutIndex];
+  const checkoutIndex = getRandomIntFromRange(0, TIME.length - 1);
+  const checkout = TIME[checkoutIndex];
   return checkout;
 }
 
@@ -122,12 +122,12 @@ function createFlatNearby() {
     guests: getGuests(),
     checkin: getCheckin(),
     checkout: getCheckout(),
-    features: createArray(features, getRandomIntFromRange(0, features.length - 1)),
+    features: createArray(FEATURES, getRandomIntFromRange(0, FEATURES.length - 1)),
     description: 'Прекрасный выбор!',
-    photos: createArray(photos, getRandomIntFromRange(0, photos.length - 1)),
+    photos: createArray(PHOTOS, getRandomIntFromRange(0, PHOTOS.length - 1)),
   };
 
-  return [author, offer, location2];
+  return {author: author, offer: offer, location: location2};
 }
 
 const appartaments = new Array(10).fill(null).map(() => createFlatNearby());
