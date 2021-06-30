@@ -22,18 +22,8 @@ function getAvatar() {
 
 function getType() {
   const typeIndex = getRandomIntFromRange(0, TYPES.length - 1);
-  let type = TYPES[typeIndex];
-  if (type === 'flat') {
-    return type = 'Квартира';
-  } else if (type === 'bungalow') {
-    return type = 'Бунгало';
-  } else if (type === 'house') {
-    return type = 'Дом';
-  } else if (type === 'palace') {
-    return type = 'Дворец';
-  } else if (type === 'hotel') {
-    return type = 'Отель';
-  }
+  const type = TYPES[typeIndex];
+  return type;
 }
 
 function getPrice() {
