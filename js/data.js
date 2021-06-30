@@ -1,5 +1,7 @@
 import {getRandomIntFromRange} from './util.js';
 
+const APARTAMENTS_COUNT = 1;
+
 const location1 = {};
 
 const AVATARS = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
@@ -20,8 +22,18 @@ function getAvatar() {
 
 function getType() {
   const typeIndex = getRandomIntFromRange(0, TYPES.length - 1);
-  const type = TYPES[typeIndex];
-  return type;
+  let type = TYPES[typeIndex];
+  if (type === 'flat') {
+    return type = 'Квартира';
+  } else if (type === 'bungalow') {
+    return type = 'Бунгало';
+  } else if (type === 'house') {
+    return type = 'Дом';
+  } else if (type === 'palace') {
+    return type = 'Дворец';
+  } else if (type === 'hotel') {
+    return type = 'Отель';
+  }
 }
 
 function getPrice() {
@@ -118,4 +130,6 @@ function createFlatNearby() {
   return {author: author, offer: offer, location: location2};
 }
 
-export {createFlatNearby};
+const createFlatsNearby = () => new Array(APARTAMENTS_COUNT).fill(null).map(() => createFlatNearby());
+
+export {createFlatsNearby};
