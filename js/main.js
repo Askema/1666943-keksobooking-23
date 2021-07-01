@@ -1,7 +1,12 @@
 import './util.js';
-import {createFlatNearby } from './data.js';
+import { createFlatNearby } from './data.js';
+import { similarFlats } from './similar.js';
 
-const appartaments = new Array(10).fill(null).map(() => createFlatNearby());
+const canvas = document.querySelector('#map-canvas');
+const APARTAMENTS_COUNT = 1;
+const createFlatsNearby = () => new Array(APARTAMENTS_COUNT).fill(null).map(() => createFlatNearby());
 
-appartaments;
+const dataElement = createFlatsNearby()[0];
+
+canvas.append(similarFlats(dataElement));
 
