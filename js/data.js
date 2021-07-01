@@ -1,7 +1,5 @@
 import {getRandomIntFromRange} from './util.js';
 
-const APARTAMENTS_COUNT = 1;
-
 const location1 = {};
 
 const AVATARS = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
@@ -120,6 +118,4 @@ function createFlatNearby() {
   return {author: author, offer: offer, location: location2};
 }
 
-const createFlatsNearby = () => new Array(APARTAMENTS_COUNT).fill(null).map(() => createFlatNearby());
-
-export {createFlatsNearby};
+export {createFlatNearby};
