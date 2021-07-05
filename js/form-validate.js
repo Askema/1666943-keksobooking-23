@@ -3,6 +3,13 @@ const MAX_TITLE_LENGTH = 100;
 const MAX_PRICE_VALUE = 1000000;
 let minPriceValue = 1000;
 
+const ZERO = '0';
+const ONE= '1';
+const TWO = '2';
+const THREE = '3';
+const HUNDRED = '100';
+
+
 const TYPES = {
   'palace': { minPrice: 10000 },
   'flat': { minPrice: 1000 },
@@ -24,7 +31,7 @@ const selectGuests = document.querySelector('#capacity');
 selectType.addEventListener('change', () => {
   minPriceValue = TYPES[selectType.value].minPrice;
   inputPrice.placeholder = minPriceValue;
-  inputPrice.setAttribute('min', inputPrice.value);
+  inputPrice.min = inputPrice.value;
 });
 
 inputTitle.addEventListener('input', () => {
@@ -59,19 +66,19 @@ function disable(Array) {
 }
 */
 
-const checkRoomsAndGuests = function() {
-  if (selectRooms.value === '1' && selectGuests.value !== '1') {
+const checkRoomsAndGuests = () => {
+  if (selectRooms.value === ONE && selectGuests.value !== ONE) {
     selectRooms.setCustomValidity(`Доступно только ${selectGuests[2].textContent}`);
-  } else if (selectRooms.value === '2' && selectGuests.value !== '2' && selectGuests.value !== '1') {
-    selectRooms.setCustomValidity(`Доступно только ${selectGuests[2].textContent}, ${selectGuests[1].textContent} и ${selectGuests[0].textContent}`);
-  } else if (selectRooms.value === '100' && selectGuests.value !== '0' ) {
+  } else if (selectRooms.value === TWO && selectGuests.value !== TWO && selectGuests.value !== ONE) {
+    selectRooms.setCustomValidity(`Доступно только ${selectGuests[2].textContent} и ${selectGuests[1].textContent}`);
+  } else if (selectRooms.value === HUNDRED && selectGuests.value !== ZERO ) {
     selectRooms.setCustomValidity('100 комнат доступны только без гостей');
-  } else if (selectRooms.value === '3' && selectGuests.value === '0' ) {
+  } else if (selectRooms.value === THREE && selectGuests.value === ZERO ) {
     selectRooms.setCustomValidity('3 комнаты не доступны без гостей');
   } else {
-    inputPrice.setCustomValidity('');
+    selectRooms.setCustomValidity('');
   }
-  inputPrice.reportValidity();
+  selectRooms.reportValidity();
 };
 
 selectRooms.addEventListener('change', checkRoomsAndGuests);
