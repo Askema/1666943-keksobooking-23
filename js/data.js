@@ -51,24 +51,6 @@ function getCheckout() {
   return checkout;
 }
 
-//Не понимаю, как создать условие, которое бы смогло увидеть значения min и max
-/*
-function createArray(array) {
-  const maxLength = getRandomIntFromRange(0, array.length - 1);
-  const minLength = getRandomIntFromRange(0, array.length - 1);
-  const min = Math.min(minLength, maxLength);
-  const max = Math.max(minLength, maxLength);
-  if (min === max && min + max === 0) {
-    createArray(array);
-  } else {
-    return array.slice(min, max);
-  }
-}
-*/
-
-//взял с https://qna.habr.com/q/844269
-// Работает, но я не разобрался как
-
 const createArray = ([...source], maxLength) => Array.from(
   { length: Math.min(source.length, 1 + Math.random() * maxLength | 0) },
   () => source.splice(Math.random() * source.length | 0, 1)[0],
