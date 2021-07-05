@@ -37,7 +37,7 @@ const addressInput = document.querySelector('#address');
 selectType.addEventListener('change', () => {
   minPriceValue = TYPES[selectType.value].minPrice;
   inputPrice.placeholder = minPriceValue;
-  inputPrice.min = inputPrice.value;
+  inputPrice.min = minPriceValue;
 });
 
 inputTitle.addEventListener('input', () => {
