@@ -4,7 +4,7 @@ const MAX_PRICE_VALUE = 1000000;
 let minPriceValue = 1000;
 
 const ZERO = '0';
-const ONE= '1';
+const ONE = '1';
 const TWO = '2';
 const THREE = '3';
 const HUNDRED = '100';
@@ -27,6 +27,12 @@ const selectType = document.querySelector('#type');
 const selectRooms = document.querySelector('#room_number');
 
 const selectGuests = document.querySelector('#capacity');
+
+const timeIn = document.querySelector('#timein');
+
+const timeOut = document.querySelector('#timeout');
+
+const addressInput = document.querySelector('#address');
 
 selectType.addEventListener('change', () => {
   minPriceValue = TYPES[selectType.value].minPrice;
@@ -71,9 +77,9 @@ const checkRoomsAndGuests = () => {
     selectRooms.setCustomValidity(`Доступно только ${selectGuests[2].textContent}`);
   } else if (selectRooms.value === TWO && selectGuests.value !== TWO && selectGuests.value !== ONE) {
     selectRooms.setCustomValidity(`Доступно только ${selectGuests[2].textContent} и ${selectGuests[1].textContent}`);
-  } else if (selectRooms.value === HUNDRED && selectGuests.value !== ZERO ) {
+  } else if (selectRooms.value === HUNDRED && selectGuests.value !== ZERO) {
     selectRooms.setCustomValidity('100 комнат доступны только без гостей');
-  } else if (selectRooms.value === THREE && selectGuests.value === ZERO ) {
+  } else if (selectRooms.value === THREE && selectGuests.value === ZERO) {
     selectRooms.setCustomValidity('3 комнаты не доступны без гостей');
   } else {
     selectRooms.setCustomValidity('');
@@ -83,3 +89,18 @@ const checkRoomsAndGuests = () => {
 
 selectRooms.addEventListener('change', checkRoomsAndGuests);
 selectGuests.addEventListener('change', checkRoomsAndGuests);
+
+const checkTimeIn = () => {
+  const index = timeIn.selectedIndex;
+  timeOut.selectedIndex = index;
+};
+
+const checkTimeOut = () => {
+  const index = timeOut.selectedIndex;
+  timeIn.selectedIndex = index;
+};
+
+timeIn.addEventListener('change', checkTimeIn);
+timeOut.addEventListener('change', checkTimeOut);
+
+addressInput.setAttribute('disabled', 'disabled');
