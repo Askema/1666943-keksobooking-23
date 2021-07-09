@@ -10,4 +10,8 @@ function getRandomIntFromRange(value1, value2, roundPlus) {
   }
 }
 
-export {getRandomIntFromRange};
+function roundOff(number) {
+  return Number(number.toFixed(5));
+}
+export { getRandomIntFromRange, roundOff };
+
