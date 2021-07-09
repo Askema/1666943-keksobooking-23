@@ -104,3 +104,4 @@ timeIn.addEventListener('change', checkTimeIn);
 timeOut.addEventListener('change', checkTimeOut);
 
 addressInput.setAttribute('disabled', 'disabled');
+addressInput.value = 'Lat: 35.65283, Lng: 139.83947';
