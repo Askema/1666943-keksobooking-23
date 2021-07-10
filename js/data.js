@@ -12,6 +12,8 @@ const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'condit
 
 const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 
+const APARTAMENTS_COUNT = 5;
+
 function getAvatar() {
   const avatarIndex = getRandomIntFromRange(AVATARS[0], AVATARS.length - 1);
   const avatar = `img/avatars/user${AVATARS[avatarIndex]}.png`;
@@ -100,4 +102,8 @@ function createFlatNearby() {
   return {author: author, offer: offer, location: location2};
 }
 
-export {createFlatNearby};
+const createFlatsNearby = () => new Array(APARTAMENTS_COUNT).fill(null).map(() => createFlatNearby());
+const dataElement = createFlatsNearby();
+
+
+export {createFlatsNearby, dataElement};
