@@ -28,4 +28,6 @@ function activeForm() {
   }
 }
 
+inactiveForm();
+
 export {inactiveForm, activeForm};
