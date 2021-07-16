@@ -19,19 +19,12 @@ const TYPES = {
 };
 
 const inputPrice = document.querySelector('#price');
-
 const inputTitle = document.querySelector('#title');
-
 const selectType = document.querySelector('#type');
-
 const selectRooms = document.querySelector('#room_number');
-
 const selectGuests = document.querySelector('#capacity');
-
 const timeIn = document.querySelector('#timein');
-
 const timeOut = document.querySelector('#timeout');
-
 const addressInput = document.querySelector('#address');
 
 selectType.addEventListener('change', () => {
@@ -63,14 +56,6 @@ inputPrice.addEventListener('input', () => {
   }
   inputPrice.reportValidity();
 });
-
-/*
-function disable(Array) {
-  for (let option = 0; option <= Array.length - 1; option++) {
-    Array[option].setAttribute('disabled', 'disabled');
-  }
-}
-*/
 
 const checkRoomsAndGuests = () => {
   if (selectRooms.value === ONE && selectGuests.value !== ONE) {
