@@ -1,10 +1,9 @@
 import { roundOff } from './util.js';
 import { similarFlats } from './similar.js';
 import { activeForm } from './form.js';
-import { dataElement } from './data.js';
 
-const LAT_CENTER_TOKYO = 35.65283;
-const LNG_CENTER_TOKYO = 139.83947;
+const LAT_CENTER_TOKYO = 35.68247;
+const LNG_CENTER_TOKYO = 139.75281;
 const MAIN_ICON_SIZE = [52, 52];
 const MAIN_ICON_ANCHOR = [26, 52];
 const ICON_SIZE = [40, 40];
@@ -14,6 +13,10 @@ const ICON_SRC = 'img/pin.svg';
 
 const canvas = document.querySelector('#map-canvas');
 const addressInput = document.querySelector('#address');
+const filters = document.querySelector('.map__filters');
+const adForm = document.querySelector('.ad-form');
+const reset = adForm.querySelector('.ad-form__reset');
+const price = adForm.querySelector('#price');
 
 addressInput.value = `${LAT_CENTER_TOKYO}, ${LNG_CENTER_TOKYO}`;
 
@@ -25,7 +28,7 @@ map.on('load', () => {
 map.setView({
   lat: LAT_CENTER_TOKYO,
   lng: LNG_CENTER_TOKYO,
-}, 12);
+}, 13);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -60,6 +63,59 @@ mainPinMarker.on('moveend', (evt) => {
 
 const markerGroup = L.layerGroup().addTo(map);
 
+const createSimilarMarker = (similarAds) => {
+  similarAds.forEach((data) => {
+    const { lat, lng } = data.location;
+    const icon = L.icon({
+      iconUrl: ICON_SRC,
+      iconSize: ICON_SIZE,
+      iconAnchor: ICON_ANCHOR,
+    });
+
+    const marker = L.marker(
+      {
+        lat,
+        lng,
+      },
+      {
+        icon,
+      },
+    );
+
+    marker
+      .addTo(markerGroup)
+      .bindPopup(
+        similarFlats(data),
+        {
+          keepInView: true,
+        },
+      );
+  });
+};
+
+const restoreData = () => {
+  mainPinMarker.setLatLng({
+    lat: LAT_CENTER_TOKYO,
+    lng: LNG_CENTER_TOKYO,
+  });
+  map.setView({
+    lat: LAT_CENTER_TOKYO,
+    lng: LNG_CENTER_TOKYO,
+  }, 13);
+  filters.reset();
+  adForm.reset();
+  price.min = 1000;
+  price.placeholder = 1000;
+  addressInput.value = `${LAT_CENTER_TOKYO}, ${LNG_CENTER_TOKYO}`;
+};
+
+reset.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  restoreData();
+});
+
+export {createSimilarMarker};
+/*
 const createMarker = (index) => {
   const {lat, lng} = dataElement[index].location;
 
@@ -88,7 +144,9 @@ const createMarker = (index) => {
       },
     );
 };
-
+*/
+/*
 dataElement.forEach((value, index) => {
   createMarker(index);
 });
+*/

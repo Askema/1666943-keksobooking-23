@@ -8,60 +8,61 @@ const typeOfApartment = {
   hotel: 'Отель',
 };
 
-const similarFlats = ({ author, offer }) => {
+const similarFlats = (data) => {
   const popupElement = templatePopup.cloneNode(true);
-  popupElement.querySelector('.popup__avatar').src = author.avatar;
-  popupElement.querySelector('.popup__title').textContent = offer.title;
-  popupElement.querySelector('.popup__text--address').textContent = offer.address;
-  popupElement.querySelector('.popup__text--price').textContent = offer.price;
-  popupElement.querySelector('.popup__type').textContent = typeOfApartment[offer.type];
-  popupElement.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
-  popupElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
+  popupElement.querySelector('.popup__avatar').src = data.author.avatar;
+  popupElement.querySelector('.popup__title').textContent = data.offer.title;
+  popupElement.querySelector('.popup__text--address').textContent = data.offer.address;
+  popupElement.querySelector('.popup__text--price').textContent = data.offer.price;
+  popupElement.querySelector('.popup__type').textContent = typeOfApartment[data.offer.type];
+  popupElement.querySelector('.popup__text--capacity').textContent = `${data.offer.rooms} комнаты для ${data.offer.guests} гостей`;
+  popupElement.querySelector('.popup__text--time').textContent = `Заезд после ${data.offer.checkin}, выезд до ${data.offer.checkout}`;
   popupElement.querySelector('.popup__features').textContent = '';
-  for (let featureIndex = 0; featureIndex <= offer.features.length - 1; featureIndex++) {
-    popupElement.querySelector('.popup__features').insertAdjacentHTML('afterbegin', `<li class="popup__feature popup__feature--${offer.features[featureIndex]}"></li>`);
-  }
-  popupElement.querySelector('.popup__description').textContent = offer.description;
+  popupElement.querySelector('.popup__description').textContent = data.offer.description;
   popupElement.querySelector('.popup__photo').parentNode.removeChild(popupElement.querySelector('.popup__photo'));
 
-  for (let sourcePhoto = 0; sourcePhoto <= offer.photos.length - 1; sourcePhoto++) {
-    popupElement.querySelector('.popup__photos').insertAdjacentHTML('afterbegin', `<img src="${offer.photos[sourcePhoto]}" class="popup__photo" width="45" height="40" alt="Фотография жилья">`);
-  }
-
-  if (!offer.title) {
+  if (!data.offer.title) {
     popupElement.removeChild(popupElement.querySelector('.popup__title'));
   }
 
-  if (!offer.address) {
+  if (!data.offer.address) {
     popupElement.removeChild(popupElement.querySelector('.popup__text--address'));
   }
 
-  if (!offer.price) {
+  if (!data.offer.price) {
     popupElement.removeChild(popupElement.querySelector('.popup__text--price'));
   }
 
-  if (!offer.type) {
+  if (!data.offer.type) {
     popupElement.removeChild(popupElement.querySelector('.popup__type'));
   }
 
-  if (!offer.rooms || !offer.guests) {
+  if (!data.offer.rooms || !data.offer.guests) {
     popupElement.removeChild(popupElement.querySelector('.popup__text--capacity'));
   }
 
-  if (!offer.checkin || !offer.checkout) {
+  if (!data.offer.checkin || !data.offer.checkout) {
     popupElement.removeChild(popupElement.querySelector('.popup__text--time'));
   }
 
-  if (!offer.features.length === 0) {
+  if (!data.offer.features) {
     popupElement.removeChild(popupElement.querySelector('.popup__features'));
+  } else {
+    for (let featureIndex = 0; featureIndex <= data.offer.features.length - 1; featureIndex++) {
+      popupElement.querySelector('.popup__features').insertAdjacentHTML('afterbegin', `<li class="popup__feature popup__feature--${data.offer.features[featureIndex]}"></li>`);
+    }
   }
 
-  if (!offer.description) {
+  if (!data.offer.description) {
     popupElement.removeChild(popupElement.querySelector('.popup__description'));
   }
 
-  if (!offer.photos.length === 0) {
+  if (!data.offer.photos) {
     popupElement.removeChild(popupElement.querySelector('.popup__photos'));
+  } else {
+    for (let sourcePhoto = 0; sourcePhoto <= data.offer.photos.length - 1; sourcePhoto++) {
+      popupElement.querySelector('.popup__photos').insertAdjacentHTML('afterbegin', `<img src="${data.offer.photos[sourcePhoto]}" class="popup__photo" width="45" height="40" alt="Фотография жилья">`);
+    }
   }
 
   return popupElement;

@@ -1,109 +1,43 @@
-import {getRandomIntFromRange} from './util.js';
+const SERVER_ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
+const SERVER_ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
+const ALERT_SHOW_TIME = 5000;
 
-const location1 = {};
+const errorAlert = document.querySelector('.ad-form__error');
 
-const AVATARS = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10'];
+const getData = (onSuccess) => {
+  fetch(SERVER_ADDRESS_GET )
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw new Error(`{response.status} — ${response.statusText}`);
+    })
+    .then((response) => response.json())
+    .then(onSuccess)
+    .catch(() => {
+      errorAlert.classList.remove('hidden'),
+      setTimeout(() => {
+        errorAlert.classList.add('hidden');
+      }, ALERT_SHOW_TIME);
+    });
+};
 
-const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const sendData = (onSuccess, onFail, body) => {
+  fetch(
+    SERVER_ADDRESS_POST,
+    {
+      method: 'POST',
+      body,
+    },
+  )
+    .then((response) => {
+      if (response.ok) {
+        onSuccess();
+        return;
+      }
+      onFail();
+    })
+    .catch(onFail);
+};
 
-const TIME = ['12:00', '13:00', '14:00'];
-
-const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-
-const PHOTOS = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
-
-const APARTAMENTS_COUNT = 5;
-
-function getAvatar() {
-  const avatarIndex = getRandomIntFromRange(AVATARS[0], AVATARS.length - 1);
-  const avatar = `img/avatars/user${AVATARS[avatarIndex]}.png`;
-  return avatar;
-}
-
-function getType() {
-  const typeIndex = getRandomIntFromRange(0, TYPES.length - 1);
-  const type = TYPES[typeIndex];
-  return type;
-}
-
-function getPrice() {
-  const price = getRandomIntFromRange(0, 50000);
-  return price;
-}
-
-function getRooms() {
-  const rooms = getRandomIntFromRange(0, 100);
-  return rooms;
-}
-
-function getGuests() {
-  const guests = getRandomIntFromRange(0, 4);
-  return guests;
-}
-
-function getCheckin() {
-  const checkinIndex = getRandomIntFromRange(0, TIME.length - 1);
-  const checkin = TIME[checkinIndex];
-  return checkin;
-}
-
-function getCheckout() {
-  const checkoutIndex = getRandomIntFromRange(0, TIME.length - 1);
-  const checkout = TIME[checkoutIndex];
-  return checkout;
-}
-
-const createArray = ([...source], maxLength) => Array.from(
-  { length: Math.min(source.length, 1 + Math.random() * maxLength | 0) },
-  () => source.splice(Math.random() * source.length | 0, 1)[0],
-);
-
-function createLocationLat() {
-  const lat = getRandomIntFromRange(35.65000, 35.70000, 5);
-  location1.lat = lat;
-  return location1.lat;
-}
-
-function createLocationLng() {
-  const lng = getRandomIntFromRange(139.70000, 139.80000, 5);
-  location1.lng = lng;
-  return location1.lng;
-}
-
-function createAddress() {
-  const address = `${location1.lat}, ${location1.lng}`;
-  return address;
-}
-
-function createFlatNearby() {
-  const author = {
-    avatar: getAvatar(),
-  };
-
-  const location2 = {
-    lat: createLocationLat(),
-    lng: createLocationLng(),
-  };
-
-  const offer = {
-    title: 'Дом',
-    address: createAddress(),
-    price: getPrice(),
-    type: getType(),
-    rooms: getRooms(),
-    guests: getGuests(),
-    checkin: getCheckin(),
-    checkout: getCheckout(),
-    features: createArray(FEATURES, getRandomIntFromRange(0, FEATURES.length - 1)),
-    description: 'Прекрасный выбор!',
-    photos: createArray(PHOTOS, getRandomIntFromRange(0, PHOTOS.length - 1)),
-  };
-
-  return {author: author, offer: offer, location: location2};
-}
-
-const createFlatsNearby = () => new Array(APARTAMENTS_COUNT).fill(null).map(() => createFlatNearby());
-const dataElement = createFlatsNearby();
-
-
-export {createFlatsNearby, dataElement};
+export {getData, sendData};
