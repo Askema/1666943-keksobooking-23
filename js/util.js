@@ -15,7 +15,7 @@ function getRandomIntFromRange(value1, value2, roundPlus) {
 
 const roundOff = (number) => Number(number.toFixed(5));
 
-const Esc = (evt) => evt.key === ESC || evt.key === ESCAPE;
+const esc = (evt) => evt.key === ESC || evt.key === ESCAPE;
 
-export { getRandomIntFromRange, roundOff, Esc};
+export { getRandomIntFromRange, roundOff, esc};
 

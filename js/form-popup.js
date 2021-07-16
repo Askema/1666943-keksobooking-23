@@ -1,5 +1,5 @@
 import { sendData } from './data.js';
-import { Esc } from './util.js';
+import { esc } from './util.js';
 
 const adForm = document.querySelector('.ad-form');
 const success = document.querySelector('#success').content.querySelector('.success');
@@ -16,11 +16,11 @@ const closePopup = () => {
   }
 };
 
-const PopupEscKeydown = (evt) => {
-  if (Esc(evt)) {
+const popupEscKeydown = (evt) => {
+  if (esc(evt)) {
     evt.preventDefault();
     closePopup();
-    document.removeEventListener('keydown', PopupEscKeydown);
+    document.removeEventListener('keydown', popupEscKeydown);
   }
 };
 
@@ -31,13 +31,13 @@ const onPopupClick = (evt) => {
 
 const showPopupSuccess = () => {
   document.body.appendChild(successMessage);
-  document.addEventListener('keydown', PopupEscKeydown);
+  document.addEventListener('keydown', popupEscKeydown);
   successMessage.addEventListener('click', onPopupClick);
 };
 
 const showErrorMessage = () => {
   document.body.appendChild(errorMessage);
-  document.addEventListener('keydown', PopupEscKeydown);
+  document.addEventListener('keydown', popupEscKeydown);
   errorMessage.addEventListener('click', onPopupClick);
   errorButton.addEventListener('click', closePopup);
 };
