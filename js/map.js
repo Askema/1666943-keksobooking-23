@@ -1,6 +1,7 @@
 import { roundOff } from './util.js';
 import { similarFlats } from './similar.js';
 import { activeForm } from './form.js';
+import { getAdverts } from './data.js';
 
 const LAT_CENTER_TOKYO = 35.68247;
 const LNG_CENTER_TOKYO = 139.75281;
@@ -10,6 +11,7 @@ const ICON_SIZE = [40, 40];
 const ICON_ANCHOR = [20, 40];
 const MAIN_ICON_SRC = 'img/main-pin.svg';
 const ICON_SRC = 'img/pin.svg';
+const AMOUNT_SIMILAR_MARKERS = 10;
 
 const canvas = document.querySelector('#map-canvas');
 const addressInput = document.querySelector('#address');
@@ -93,7 +95,7 @@ const createSimilarMarker = (similarAds) => {
   });
 };
 
-const restoreData = () => {
+const setMainMarker = () => {
   mainPinMarker.setLatLng({
     lat: LAT_CENTER_TOKYO,
     lng: LNG_CENTER_TOKYO,
@@ -102,11 +104,21 @@ const restoreData = () => {
     lat: LAT_CENTER_TOKYO,
     lng: LNG_CENTER_TOKYO,
   }, 13);
+  addressInput.value = `${LAT_CENTER_TOKYO}, ${LNG_CENTER_TOKYO}`;
+};
+
+const clearMarker = () => {
+  markerGroup.clearLayers();
+  setMainMarker();
+};
+
+const restoreData = () => {
   filters.reset();
   adForm.reset();
+  clearMarker();
+  createSimilarMarker(getAdverts().slice(0, AMOUNT_SIMILAR_MARKERS));
   price.min = 1000;
   price.placeholder = 1000;
-  addressInput.value = `${LAT_CENTER_TOKYO}, ${LNG_CENTER_TOKYO}`;
 };
 
 reset.addEventListener('click', (evt) => {
@@ -114,39 +126,4 @@ reset.addEventListener('click', (evt) => {
   restoreData();
 });
 
-export {createSimilarMarker};
-/*
-const createMarker = (index) => {
-  const {lat, lng} = dataElement[index].location;
-
-  const icon = L.icon({
-    iconUrl: ICON_SRC,
-    iconSize: ICON_SIZE,
-    iconAnchor: ICON_ANCHOR,
-  });
-
-  const marker = L.marker(
-    {
-      lat,
-      lng,
-    },
-    {
-      icon,
-    },
-  );
-
-  marker
-    .addTo(markerGroup)
-    .bindPopup(
-      similarFlats(dataElement[index]),
-      {
-        keepInView: true,
-      },
-    );
-};
-*/
-/*
-dataElement.forEach((value, index) => {
-  createMarker(index);
-});
-*/
+export {createSimilarMarker, clearMarker};
