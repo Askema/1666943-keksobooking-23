@@ -126,4 +126,4 @@ reset.addEventListener('click', (evt) => {
   restoreData();
 });
 
-export {createSimilarMarker, clearMarker};
+export { createSimilarMarker, clearMarker, restoreData };
