@@ -23,25 +23,7 @@ const getData = async () => {
   data = await response.json();
   return data;
 };
-/*
-const getData = (onSuccess) => {
-  fetch(SERVER_ADDRESS_GET )
-    .then((response) => {
-      if (response.ok) {
-        return response;
-      }
-      throw new Error(`{response.status} — ${response.statusText}`);
-    })
-    .then((response) => response.json())
-    .then(onSuccess)
-    .catch(() => {
-      errorAlert.classList.remove('hidden'),
-      setTimeout(() => {
-        errorAlert.classList.add('hidden');
-      }, ALERT_SHOW_TIME);
-    });
-};
-*/
+
 const sendData = (onSuccess, onFail, body) => {
   fetch(
     SERVER_ADDRESS_POST,
