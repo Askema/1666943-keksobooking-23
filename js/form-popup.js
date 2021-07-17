@@ -1,5 +1,6 @@
 import { sendData } from './data.js';
 import { esc } from './util.js';
+import { restoreData } from './map.js';
 
 const adForm = document.querySelector('.ad-form');
 const success = document.querySelector('#success').content.querySelector('.success');
@@ -50,6 +51,7 @@ const formSubmit = () => {
       () => showErrorMessage(),
       new FormData(evt.target),
     );
+    restoreData();
   });
 };
 
