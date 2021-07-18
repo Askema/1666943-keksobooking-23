@@ -17,7 +17,7 @@ const roundOff = (number) => Number(number.toFixed(5));
 
 const esc = (evt) => evt.key === ESC || evt.key === ESCAPE;
 
-function debounce (callback, timeoutDelay = 500) {
+const debounce = (callback, timeoutDelay = 500) => {
 
   let timeoutId;
 
@@ -26,7 +26,7 @@ function debounce (callback, timeoutDelay = 500) {
 
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
 const matchFilter = (findings, filterValue) => String(findings) === String(filterValue) || filterValue === DEFAULT_FILTER;
 
@@ -44,7 +44,7 @@ const matchPrice = (findings, filterValue) => {
 };
 
 const matchFeatures = (findings) => {
-  const checkedFeatures = document.querySelectorAll('input:checked');
+  const checkedFeatures = document.querySelector('.map__filters').querySelectorAll('input:checked');
   return Array.from(checkedFeatures).every((feature) => {
     if (findings) {
       return findings.includes(feature.value);
