@@ -28,6 +28,7 @@ const onPopupEscKeydown = (evt) => {
 const onPopupClick = (evt) => {
   evt.preventDefault();
   popupCloseHandler();
+  document.removeEventListener('keydown', onPopupEscKeydown);
 };
 
 const showPopupSuccess = () => {
