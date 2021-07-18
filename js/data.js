@@ -1,3 +1,5 @@
+import { activeMapFilters } from './form.js';
+
 const SERVER_ADDRESS_GET = 'https://23.javascript.pages.academy/keksobooking/data';
 const SERVER_ADDRESS_POST = 'https://23.javascript.pages.academy/keksobooking';
 const ALERT_SHOW_TIME = 5000;
@@ -21,6 +23,7 @@ const getData = async () => {
     }, ALERT_SHOW_TIME);
   }
   data = await response.json();
+  activeMapFilters();
   return data;
 };
 

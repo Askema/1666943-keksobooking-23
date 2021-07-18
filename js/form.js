@@ -8,12 +8,6 @@ function inactiveForm() {
   for (let formElementIndex = 0; formElementIndex <= adFormElements.length - 1; formElementIndex++) {
     adFormElements[formElementIndex].setAttribute('disabled', 'disabled');
   }
-
-  mapFilters.classList.add('map__filters--disabled');
-
-  for (let mapFiltersIndex = 0; mapFiltersIndex <= mapFilters.children.length - 1; mapFiltersIndex++) {
-    mapFilters.children[mapFiltersIndex].setAttribute('disabled', 'disabled');
-  }
 }
 
 function activeForm() {
@@ -21,6 +15,11 @@ function activeForm() {
   for (let formElementIndex = 0; formElementIndex <= adFormElements.length - 1; formElementIndex++) {
     adFormElements[formElementIndex].removeAttribute('disabled');
   }
+}
+
+inactiveForm();
+
+function activeMapFilters() {
   mapFilters.classList.remove('map__filters--disabled');
 
   for (let mapFiltersIndex = 0; mapFiltersIndex <= mapFilters.children.length - 1; mapFiltersIndex++) {
@@ -28,6 +27,4 @@ function activeForm() {
   }
 }
 
-inactiveForm();
-
-export {inactiveForm, activeForm};
+export { inactiveForm, activeForm, activeMapFilters};

@@ -107,15 +107,15 @@ const setMainMarker = () => {
   addressInput.value = `${LAT_CENTER_TOKYO}, ${LNG_CENTER_TOKYO}`;
 };
 
-const clearMarker = () => {
+const clearMarkers = () => {
   markerGroup.clearLayers();
-  setMainMarker();
 };
 
 const restoreData = () => {
   filters.reset();
   adForm.reset();
-  clearMarker();
+  clearMarkers();
+  setMainMarker();
   createSimilarMarker(getAdverts().slice(0, AMOUNT_SIMILAR_MARKERS));
   price.min = 1000;
   price.placeholder = 1000;
@@ -126,4 +126,4 @@ reset.addEventListener('click', (evt) => {
   restoreData();
 });
 
-export { createSimilarMarker, clearMarker, restoreData };
+export { createSimilarMarker, clearMarkers, restoreData };

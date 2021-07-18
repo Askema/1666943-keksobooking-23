@@ -1,5 +1,5 @@
 import { getAdverts } from './data.js';
-import { createSimilarMarker, clearMarker } from './map.js';
+import { createSimilarMarker, clearMarkers } from './map.js';
 import { isMatchedFilter, isMatchedPrice, isMatchedFeatures, debounce } from './util.js';
 
 const SIMILAR_FLATS_COUNT = 10;
@@ -11,7 +11,7 @@ const housingRooms = filters.querySelector('#housing-rooms');
 const housingGuests = filters.querySelector('#housing-guests');
 
 const filtersAds = () => {
-  clearMarker();
+  clearMarkers();
   createSimilarMarker(getAdverts()
     .filter((data) =>
       isMatchedFilter(data.offer.type, housingType.value)
