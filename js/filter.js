@@ -1,6 +1,6 @@
 import { getAdverts } from './data.js';
 import { createSimilarMarker, clearMarkers } from './map.js';
-import { isMatchedFilter, isMatchedPrice, isMatchedFeatures, debounce } from './util.js';
+import { matchFilter, matchPrice, matchFeatures, debounce } from './util.js';
 
 const SIMILAR_FLATS_COUNT = 10;
 const TIMEOUT_DELAY = 500;
@@ -14,11 +14,11 @@ const filtersAds = () => {
   clearMarkers();
   createSimilarMarker(getAdverts()
     .filter((data) =>
-      isMatchedFilter(data.offer.type, housingType.value)
-      && isMatchedPrice(data.offer.price, housingPrice.value)
-      && isMatchedFilter(data.offer.rooms, housingRooms.value)
-      && isMatchedFilter(data.offer.guests, housingGuests.value)
-      && isMatchedFeatures(data.offer.features))
+      matchFilter(data.offer.type, housingType.value)
+      && matchPrice(data.offer.price, housingPrice.value)
+      && matchFilter(data.offer.rooms, housingRooms.value)
+      && matchFilter(data.offer.guests, housingGuests.value)
+      && matchFeatures(data.offer.features))
     .slice(0, SIMILAR_FLATS_COUNT));
 };
 

@@ -40,9 +40,9 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-const isMatchedFilter = (findings, filterValue) => String(findings) === String(filterValue) || filterValue === DEFAULT_FILTER;
+const matchFilter = (findings, filterValue) => String(findings) === String(filterValue) || filterValue === DEFAULT_FILTER;
 
-const isMatchedPrice = (findings, filterValue) => {
+const matchPrice = (findings, filterValue) => {
   if (filterValue === priceCategories.low) {
     return findings < pricesRange.low;
   }
@@ -55,7 +55,7 @@ const isMatchedPrice = (findings, filterValue) => {
   return true;
 };
 
-const isMatchedFeatures = (findings) => {
+const matchFeatures = (findings) => {
   const checkedFeatures = document.querySelectorAll('input:checked');
   return Array.from(checkedFeatures).every((feature) => {
     if (findings) {
@@ -63,5 +63,5 @@ const isMatchedFeatures = (findings) => {
     }
   });
 };
-export { getRandomIntFromRange, roundOff, esc, debounce, isMatchedFilter, isMatchedPrice, isMatchedFeatures};
+export { getRandomIntFromRange, roundOff, esc, debounce, matchFilter, matchPrice, matchFeatures};
 
