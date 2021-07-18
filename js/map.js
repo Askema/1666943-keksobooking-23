@@ -5,6 +5,8 @@ import { getAdverts } from './data.js';
 
 const LAT_CENTER_TOKYO = 35.68247;
 const LNG_CENTER_TOKYO = 139.75281;
+const MAP_ZOOM = 13;
+const MIN_PRICE = 1000;
 const MAIN_ICON_SIZE = [52, 52];
 const MAIN_ICON_ANCHOR = [26, 52];
 const ICON_SIZE = [40, 40];
@@ -30,7 +32,7 @@ map.on('load', () => {
 map.setView({
   lat: LAT_CENTER_TOKYO,
   lng: LNG_CENTER_TOKYO,
-}, 13);
+}, MAP_ZOOM);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -103,7 +105,7 @@ const setMainMarker = () => {
   map.setView({
     lat: LAT_CENTER_TOKYO,
     lng: LNG_CENTER_TOKYO,
-  }, 13);
+  }, MAP_ZOOM);
   addressInput.value = `${LAT_CENTER_TOKYO}, ${LNG_CENTER_TOKYO}`;
 };
 
@@ -117,8 +119,8 @@ const restoreData = () => {
   clearMarkers();
   setMainMarker();
   createSimilarMarker(getAdverts().slice(0, AMOUNT_SIMILAR_MARKERS));
-  price.min = 1000;
-  price.placeholder = 1000;
+  price.min = MIN_PRICE;
+  price.placeholder = MIN_PRICE;
 };
 
 reset.addEventListener('click', (evt) => {

@@ -36,9 +36,9 @@ inputTitle.addEventListener('input', () => {
   const valueLength = inputTitle.value.length;
 
   if (valueLength < MIN_TITLE_LENGTH) {
-    inputTitle.setCustomValidity(`Минимум 30 символов. Ещё ${MIN_TITLE_LENGTH - valueLength} симв.`);
+    inputTitle.setCustomValidity(`Минимум ${MIN_TITLE_LENGTH} символов. Ещё ${MIN_TITLE_LENGTH - valueLength} симв.`);
   } else if (valueLength > MAX_TITLE_LENGTH) {
-    inputTitle.setCustomValidity(`Максимум 100 символов. Удалите лишние ${valueLength - MAX_TITLE_LENGTH} симв.`);
+    inputTitle.setCustomValidity(`Максимум ${MAX_TITLE_LENGTH} символов. Удалите лишние ${valueLength - MAX_TITLE_LENGTH} симв.`);
   } else {
     inputTitle.setCustomValidity('');
   }
