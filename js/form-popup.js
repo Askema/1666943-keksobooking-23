@@ -34,6 +34,7 @@ const showPopupSuccess = () => {
   document.body.appendChild(successMessage);
   document.addEventListener('keydown', popupEscKeydown);
   successMessage.addEventListener('click', onPopupClick);
+  restoreData();
 };
 
 const showErrorMessage = () => {
@@ -51,7 +52,6 @@ const formSubmit = () => {
       () => showErrorMessage(),
       new FormData(evt.target),
     );
-    restoreData();
   });
 };
 
