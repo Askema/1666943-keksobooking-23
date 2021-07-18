@@ -9,7 +9,7 @@ const errorButton = error.querySelector('.error__button');
 const successMessage = success.cloneNode(true);
 const errorMessage = error.cloneNode(true);
 
-const closePopup = () => {
+const popupCloseHandler = () => {
   if (document.body.contains(successMessage)) {
     document.body.removeChild(successMessage);
   } else {
@@ -17,31 +17,31 @@ const closePopup = () => {
   }
 };
 
-const popupEscKeydown = (evt) => {
+const onPopupEscKeydown = (evt) => {
   if (getEsc(evt)) {
     evt.preventDefault();
-    closePopup();
-    document.removeEventListener('keydown', popupEscKeydown);
+    popupCloseHandler();
+    document.removeEventListener('keydown', onPopupEscKeydown);
   }
 };
 
 const onPopupClick = (evt) => {
   evt.preventDefault();
-  closePopup();
+  popupCloseHandler();
 };
 
 const showPopupSuccess = () => {
   document.body.appendChild(successMessage);
-  document.addEventListener('keydown', popupEscKeydown);
+  document.addEventListener('keydown', onPopupEscKeydown);
   successMessage.addEventListener('click', onPopupClick);
   restoreData();
 };
 
 const showErrorMessage = () => {
   document.body.appendChild(errorMessage);
-  document.addEventListener('keydown', popupEscKeydown);
+  document.addEventListener('keydown', onPopupEscKeydown);
   errorMessage.addEventListener('click', onPopupClick);
-  errorButton.addEventListener('click', closePopup);
+  errorButton.addEventListener('click', popupCloseHandler);
 };
 
 const formSubmit = () => {

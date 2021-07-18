@@ -56,7 +56,7 @@ inputPrice.addEventListener('input', () => {
   inputPrice.reportValidity();
 });
 
-const checkRoomsAndGuests = () => {
+const onCapacityChange = () => {
   if (selectRooms.value === ONE && selectGuests.value !== ONE) {
     selectRooms.setCustomValidity(`Доступно только ${selectGuests[2].textContent}`);
   } else if (selectRooms.value === TWO && selectGuests.value !== TWO && selectGuests.value !== ONE) {
@@ -71,19 +71,19 @@ const checkRoomsAndGuests = () => {
   selectRooms.reportValidity();
 };
 
-selectRooms.addEventListener('change', checkRoomsAndGuests);
-selectGuests.addEventListener('change', checkRoomsAndGuests);
+selectRooms.addEventListener('change', onCapacityChange);
+selectGuests.addEventListener('change', onCapacityChange);
 
-const checkTimeIn = () => {
+const timeInHandler = () => {
   const index = timeIn.selectedIndex;
   timeOut.selectedIndex = index;
 };
 
-const checkTimeOut = () => {
+const timeOutHandler = () => {
   const index = timeOut.selectedIndex;
   timeIn.selectedIndex = index;
 };
 
-timeIn.addEventListener('change', checkTimeIn);
-timeOut.addEventListener('change', checkTimeOut);
+timeIn.addEventListener('change', timeInHandler);
+timeOut.addEventListener('change', timeOutHandler);
 
