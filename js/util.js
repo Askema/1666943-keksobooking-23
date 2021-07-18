@@ -15,7 +15,7 @@ const pricesRange = {
 
 const roundOff = (number) => Number(number.toFixed(5));
 
-const esc = (evt) => evt.key === ESC || evt.key === ESCAPE;
+const getEsc = (evt) => evt.key === ESC || evt.key === ESCAPE;
 
 const debounce = (callback, timeoutDelay = 500) => {
 
@@ -51,5 +51,5 @@ const matchFeatures = (findings) => {
     }
   });
 };
-export { roundOff, esc, debounce, matchFilter, matchPrice, matchFeatures};
+export { roundOff, getEsc, debounce, matchFilter, matchPrice, matchFeatures};
 

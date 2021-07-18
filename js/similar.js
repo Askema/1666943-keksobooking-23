@@ -8,7 +8,7 @@ const typeOfApartment = {
   hotel: 'Отель',
 };
 
-const similarFlats = (data) => {
+const makePopup = (data) => {
   const popupElement = templatePopup.cloneNode(true);
   popupElement.querySelector('.popup__avatar').src = data.author.avatar;
   popupElement.querySelector('.popup__title').textContent = data.offer.title;
@@ -68,4 +68,4 @@ const similarFlats = (data) => {
   return popupElement;
 };
 
-export { similarFlats };
+export { makePopup };

@@ -1,6 +1,6 @@
 import { roundOff } from './util.js';
-import { similarFlats } from './similar.js';
-import { activeForm } from './form.js';
+import { makePopup } from './similar.js';
+import { makeFormActive } from './form.js';
 import { getAdverts } from './data.js';
 
 const LAT_CENTER_TOKYO = 35.68247;
@@ -24,7 +24,7 @@ addressInput.value = `${LAT_CENTER_TOKYO}, ${LNG_CENTER_TOKYO}`;
 
 const map = L.map(canvas);
 map.on('load', () => {
-  activeForm();
+  makeFormActive();
 });
 
 map.setView({
@@ -87,7 +87,7 @@ const createSimilarMarker = (similarAds) => {
     marker
       .addTo(markerGroup)
       .bindPopup(
-        similarFlats(data),
+        makePopup(data),
         {
           keepInView: true,
         },

@@ -1,5 +1,5 @@
 import { sendData } from './data.js';
-import { esc } from './util.js';
+import { getEsc } from './util.js';
 import { restoreData } from './map.js';
 
 const adForm = document.querySelector('.ad-form');
@@ -18,7 +18,7 @@ const closePopup = () => {
 };
 
 const popupEscKeydown = (evt) => {
-  if (esc(evt)) {
+  if (getEsc(evt)) {
     evt.preventDefault();
     closePopup();
     document.removeEventListener('keydown', popupEscKeydown);
