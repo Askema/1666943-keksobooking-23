@@ -60,9 +60,9 @@ const makePopup = (data) => {
   if (!data.offer.features) {
     popupElement.removeChild(popupFeatures);
   } else {
-    for (let featureIndex = 0; featureIndex <= data.offer.features.length - 1; featureIndex++) {
-      popupFeatures.insertAdjacentHTML('afterbegin', `<li class="popup__feature popup__feature--${data.offer.features[featureIndex]}"></li>`);
-    }
+    data.offer.features.forEach((features) => {
+      popupFeatures.insertAdjacentHTML('afterbegin', `<li class="popup__feature popup__feature--${features}"></li>`);
+    });
   }
 
   if (!data.offer.description) {
