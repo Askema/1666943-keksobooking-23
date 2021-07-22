@@ -74,16 +74,16 @@ const onCapacityChange = () => {
 selectRooms.addEventListener('change', onCapacityChange);
 selectGuests.addEventListener('change', onCapacityChange);
 
-const timeInHandler = () => {
+const onTimeInChange = () => {
   const index = timeIn.selectedIndex;
   timeOut.selectedIndex = index;
 };
 
-const timeOutHandler = () => {
+const onTmeOutChange = () => {
   const index = timeOut.selectedIndex;
   timeIn.selectedIndex = index;
 };
 
-timeIn.addEventListener('change', timeInHandler);
-timeOut.addEventListener('change', timeOutHandler);
+timeIn.addEventListener('change', onTimeInChange);
+timeOut.addEventListener('change', onTmeOutChange);
 

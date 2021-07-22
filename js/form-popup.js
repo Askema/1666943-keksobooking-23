@@ -45,7 +45,7 @@ const showErrorMessage = () => {
   errorButton.addEventListener('click', popupCloseHandler);
 };
 
-const formSubmit = () => {
+const onFormSubmit = () => {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     sendData(
@@ -56,4 +56,4 @@ const formSubmit = () => {
   });
 };
 
-formSubmit();
+onFormSubmit();
