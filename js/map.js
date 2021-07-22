@@ -7,10 +7,10 @@ const LAT_CENTER_TOKYO = 35.68247;
 const LNG_CENTER_TOKYO = 139.75281;
 const MAP_ZOOM = 13;
 const MIN_PRICE = 1000;
-const MAIN_ICON_SIZE = [52, 52];
-const MAIN_ICON_ANCHOR = [26, 52];
-const ICON_SIZE = [40, 40];
-const ICON_ANCHOR = [20, 40];
+const MAIN_ICON_SIZES = [52, 52];
+const MAIN_ICON_ANCHOR_SIZES = [26, 52];
+const ICON_SIZES = [40, 40];
+const ICON_ANCHOR_SIZES = [20, 40];
 const MAIN_ICON_SRC = 'img/main-pin.svg';
 const ICON_SRC = 'img/pin.svg';
 const AMOUNT_SIMILAR_MARKERS = 10;
@@ -43,8 +43,8 @@ L.tileLayer(
 
 const mainPinIcon = L.icon({
   iconUrl: MAIN_ICON_SRC,
-  iconSize: MAIN_ICON_SIZE,
-  iconAnchor: MAIN_ICON_ANCHOR,
+  iconSize: MAIN_ICON_SIZES,
+  iconAnchor: MAIN_ICON_ANCHOR_SIZES,
 });
 
 const mainPinMarker = L.marker(
@@ -72,8 +72,8 @@ const createSimilarMarker = (similarAds) => {
     const { lat, lng } = data.location;
     const icon = L.icon({
       iconUrl: ICON_SRC,
-      iconSize: ICON_SIZE,
-      iconAnchor: ICON_ANCHOR,
+      iconSize: ICON_SIZES,
+      iconAnchor: ICON_ANCHOR_SIZES,
     });
 
     const marker = L.marker(
