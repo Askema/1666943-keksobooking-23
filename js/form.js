@@ -18,11 +18,7 @@ const makeFormInactive = () => {
     element.setAttribute('disabled', 'disabled');
   });
 };
-/*
-data.offer.photos.forEach((photos) => {
-      popupPhotos.insertAdjacentHTML('afterbegin', `<img src="${photos}" class="popup__photo" width="45" height="40" alt="Фотография жилья">`);
-    });
-*/
+
 const makeFormActive = () => {
   adForm.classList.remove('ad-form--disabled');
   adFormElements.forEach((element) => {
@@ -34,15 +30,9 @@ makeFormInactive();
 
 const makeMapFiltersActive = () => {
   mapFilters.classList.remove('map__filters--disabled');
-
-  mapFilter.foreach((element) => {
-    element.removeAttribute('disabled');
+  [].forEach.call(mapFilter, (el) => {
+    el.removeAttribute('disabled');
   });
-/*
-  for (let mapFiltersIndex = 0; mapFiltersIndex <= mapFilters.children.length - 1; mapFiltersIndex++) {
-    mapFilters.children[mapFiltersIndex].removeAttribute('disabled');
-  }
-  */
 };
 
 const addImage = (chooser, preview) => {
