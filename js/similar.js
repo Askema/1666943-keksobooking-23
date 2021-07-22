@@ -72,9 +72,9 @@ const makePopup = (data) => {
   if (!data.offer.photos) {
     popupElement.removeChild(popupPhotos);
   } else {
-    for (let sourcePhoto = 0; sourcePhoto <= data.offer.photos.length - 1; sourcePhoto++) {
-      popupPhotos.insertAdjacentHTML('afterbegin', `<img src="${data.offer.photos[sourcePhoto]}" class="popup__photo" width="45" height="40" alt="Фотография жилья">`);
-    }
+    data.offer.photos.forEach((photos) => {
+      popupPhotos.insertAdjacentHTML('afterbegin', `<img src="${photos}" class="popup__photo" width="45" height="40" alt="Фотография жилья">`);
+    });
   }
 
   return popupElement;
