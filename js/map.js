@@ -1,6 +1,6 @@
 import { roundOff } from './util.js';
 import { makePopup } from './similar.js';
-import { makeFormActive } from './form.js';
+import { makeFormActive, resetPreview } from './form.js';
 import { getAdverts } from './data.js';
 
 const LAT_CENTER_TOKYO = 35.68247;
@@ -116,6 +116,7 @@ const clearMarkers = () => {
 const restoreData = () => {
   filters.reset();
   adForm.reset();
+  resetPreview();
   clearMarkers();
   setMainMarker();
   createSimilarMarker(getAdverts().slice(0, AMOUNT_SIMILAR_MARKERS));

@@ -1,5 +1,6 @@
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const PHOTO_ELEMENT_HTML = '<img class="ad-form__img" src="img/muffin-grey.svg" alt="Фотография жилья" width="40" height="44">';
+const DEFAULT_IMAGE = 'img/muffin-grey.svg';
 
 const adForm = document.querySelector('.ad-form');
 const adFormElements = adForm.querySelectorAll('.ad-form__element');
@@ -57,4 +58,9 @@ const addImage = (chooser, preview) => {
 addImage(avatarFileChooser, previewAvatar);
 addImage(photoFileChooser, previewPhoto);
 
-export { makeFormInactive, makeFormActive, makeMapFiltersActive};
+const resetPreview = () => {
+  previewAvatar.src = DEFAULT_IMAGE;
+  previewPhoto.src = DEFAULT_IMAGE;
+};
+
+export { makeFormInactive, makeFormActive, makeMapFiltersActive, resetPreview};
